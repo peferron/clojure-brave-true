@@ -42,5 +42,31 @@
 (def negs (mapset - rands))
 (take 10 negs)
 
-; 5
+; 5 & 6
 
+(def asym-alien-body-parts [{:name "head" :size 3}
+                            {:name "eye-1" :size 1}])
+
+(defn matching-part
+  [part index]
+  (let [matching-part-suffix (str "-" index)
+        matching-part-name (clojure.string/replace (:name part) #"-1$" matching-part-suffix)]
+    (assoc part :name matching-part-name)))
+
+(map #(matching-part % 2) asym-alien-body-parts)
+
+(defn matching-parts
+  [count part]
+  (let [indexes (range 1 (inc count))]
+    (set (map (partial matching-part part) indexes))))
+
+(map (partial matching-parts 5) asym-alien-body-parts)
+
+(defn symmetrize-body-parts
+  [count asym-body-parts]
+  (reduce (fn [final-body-parts part]
+            (into final-body-parts (matching-parts count part)))
+          []
+          asym-body-parts))
+
+(symmetrize-body-parts 5 asym-alien-body-parts)
