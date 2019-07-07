@@ -13,6 +13,8 @@
   [x]
   (+ x 100))
 
+(inc-100 123)
+
 ; 3
 
 (defn dec-maker
@@ -20,11 +22,16 @@
   [dec-by]
   #(- % dec-by))
 
+(def dec-100 (dec-maker 100))
+(dec-100 123)
+
 ; 4
 
 (defn mapset
   [f coll]
   (set (map f coll)))
+
+(mapset inc [1 1 2 3])
 
 ; It looks like Clojure doesn't have a concept of lazy sets, so the
 ; implementation of `mapset` above hangs on the second line below:
