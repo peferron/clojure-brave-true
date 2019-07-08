@@ -7,12 +7,14 @@
 
 (def infixed '(1 + 3 * 4 - 5))
 
+(def priorities {'+ 1
+                 '- 1
+                 '* 2
+                 '/ 2})
+
 (defn priority
   [item]
-  (case item
-    (+ -) 1
-    (* /) 2
-    0))
+  (get priorities item 0))
 
 (map priority infixed)
 
