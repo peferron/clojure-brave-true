@@ -32,7 +32,7 @@
    (let [[left-operand operator right-operand & remaining] items]
      (if (= (priority operator) max-p)
        (apply list (list operator left-operand right-operand) remaining)
-       (concat (list left-operand operator) (simplify (cons right-operand remaining) max-p))))))
+       (apply list left-operand operator (simplify (cons right-operand remaining) max-p))))))
 
 (simplify '(1 + 3))
 (simplify '(1 + 3 * 4))
