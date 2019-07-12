@@ -18,13 +18,13 @@
 
 ; 2
 
-(def append conj) ; Wat
+(def append conj)                                           ; Wat
 
 (append suspects {:name "Jacob Black" :glitter-index 3})
 
 ; 3
 
-(def validations {:name #(and (string? %) (not-empty %))
+(def validations {:name          #(and (string? %) (not-empty %))
                   :glitter-index number?})
 
 (defn validate
