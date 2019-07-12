@@ -27,7 +27,7 @@
 (defn simplify
   ([items]
    (simplify items (max-priority items)))
-  
+
   ([items max-p]
    (let [[left-operand operator right-operand & remaining] items]
      (if (= (priority operator) max-p)
