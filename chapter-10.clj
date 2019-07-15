@@ -49,8 +49,8 @@
 (defn heal
   [healer healed]
   (dosync
-    (when (> (healer :pots) 0)
+    (when (> (:pots healer) 0)
       (alter healer update :pots dec)
-      (alter healed update :cur #(min (healed :max) (+ % 10))))))
+      (alter healed update :cur #(min (:max healed) (+ % 10))))))
 
 (heal a b)
