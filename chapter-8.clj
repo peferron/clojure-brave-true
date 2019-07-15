@@ -64,4 +64,4 @@
   (println "False :(")
   false)
 
-(or (my-false) (my-true) (my-true))                         ; Should print true only once
+(or (my-false) (my-true) (my-true))
