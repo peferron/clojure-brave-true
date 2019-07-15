@@ -65,3 +65,27 @@
   false)
 
 (or (my-false) (my-true) (my-true))
+
+; 3
+
+(def char {:attributes {:intelligence 1
+                        :strength 2
+                        :dexterity 3}})
+
+(defmacro defattrs
+  [& pairs]
+  `(do ~@(map (fn [[fn-name keyword]]
+                `(def ~fn-name (comp ~keyword :attributes)))
+              (partition 2 pairs))))
+
+(macroexpand '(defattrs c-int :intelligence
+                        c-str :strength
+                        c-dex :dexterity))
+
+(defattrs c-int :intelligence
+          c-str :strength
+          c-dex :dexterity)
+
+(c-int char)
+(c-str char)
+(c-dex char)
